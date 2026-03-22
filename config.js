@@ -70,6 +70,7 @@ const CONFIG = {
   // ── 링크 공유 시 나타나는 문구 ──
   meta: {
     title: "피윤호 ♥ 전지원 결혼합니다",
-    description: "2026년 7월 19일, 소중한 분들을 초대합니다."
+    description: "2026년 7월 19일, 소중한 분들을 초대합니다.",
+    image: "https://raw.githubusercontent.com/pagppp1/jpwedding/main/images/og/1.jpg"
   }
 };
