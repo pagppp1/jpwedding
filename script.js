@@ -495,54 +495,7 @@
   }
 
 
-  /* ═══════════════════════════════════════════
-     Telephone section
-     ═══════════════════════════════════════════ */
-function setupContacts() {
-  const modal = document.getElementById('contactModal');
-  const openBtn = document.getElementById('openContact');
-  const closeBtn = document.getElementById('closeModal');
-  const list = document.getElementById('contactList');
-  const tabs = document.querySelectorAll('.tab');
-
-  let currentTab = 'groom';
-
-  // 모달 열기
-  openBtn.onclick = () => {
-    modal.style.display = 'flex';
-    renderList(currentTab);
-  };
-
-  // 모달 닫기
-  closeBtn.onclick = () => {
-    modal.style.display = 'none';
-  };
-
-  // 탭 클릭
-  tabs.forEach(tab => {
-    tab.onclick = () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      currentTab = tab.dataset.tab;
-      renderList(currentTab);
-    };
-  });
-
-  // 리스트 렌더링
-  function renderList(type) {
-    const data = CONFIG.contacts[type];
-
-    list.innerHTML = data.map(person => `
-      <div class="contact-item">
-        <span>${person.name}</span>
-        <div>
-          <a href="tel:${person.phone}">📞</a>
-          <a href="sms:${person.phone}">💬</a>
-        </div>
-      </div>
-    `).join('');
-  }
-}
+ 
   
   /* ═══════════════════════════════════════════
      Location Section
