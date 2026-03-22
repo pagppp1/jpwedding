@@ -1149,3 +1149,66 @@ a {
         transform: none !important;
     }
 }
+/* 모달 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* 박스 */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 320px;
+  position: relative;
+}
+
+/* 닫기 */
+#closeModal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 탭 */
+.tabs {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: #333;
+  color: white;
+}
+
+/* 리스트 */
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.contact-item a {
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 18px;
+}
