@@ -118,7 +118,7 @@
     };
     setMeta('property', 'og:title', m.title);
     setMeta('property', 'og:description', m.description);
-    setMeta('property', 'og:image', 'images/og/1.jpg');
+    setMeta('property', 'og:image', 'm.image');
     setMeta('name', 'twitter:title', m.title);
     setMeta('name', 'twitter:description', m.description);
     setMeta('name', 'twitter:image', 'images/og/1.jpg');
