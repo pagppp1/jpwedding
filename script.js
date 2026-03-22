@@ -693,6 +693,7 @@ function setupContacts() {
     initHero();
     initCountdown();
     initCalendar();
+    setupContacts();
 
     // Show loading placeholders while detecting images
     showLoadingPlaceholders();
