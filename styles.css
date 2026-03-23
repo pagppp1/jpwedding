@@ -695,6 +695,15 @@ a {
     background-color: #02b350;
 }
 
+.tmap-btn {
+    background-color: #6798fd;
+    border-color: #6798fd;
+    color: #fff;
+}
+
+.tmap-btn:hover {
+    background-color: #79aaff;
+}
 .location-map-container {
     width: 80%;
     max-width: 300px;
