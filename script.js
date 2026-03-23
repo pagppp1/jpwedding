@@ -508,6 +508,7 @@
     $('#locationMapImg').src = 'images/location/1.jpg';
     $('#kakaoMapBtn').href = w.mapLinks.kakao || '#';
     $('#naverMapBtn').href = w.mapLinks.naver || '#';
+    $('#tmapMapBtn').href = w.mapLinks.tmap || '#';
 
     $('#copyAddressBtn').addEventListener('click', () => {
       copyToClipboard(w.address, '주소가 복사되었습니다');
