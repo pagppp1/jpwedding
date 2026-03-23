@@ -40,7 +40,8 @@ const CONFIG = {
     address: "경기도 수원시 권선구 세화로 116 2층",
     mapLinks: {
       kakao: "https://kko.to/BzHyjm0rww",
-      naver: "https://naver.me/5apDP7nI"
+      naver: "https://naver.me/5apDP7nI",
+      tmap: "https://tmap.life/2da486ee"
     }
   },
 
