@@ -358,35 +358,29 @@
   let galleryImagesList = [];
 
   function initGallery(galleryImages) {
-    galleryImagesList = galleryImages;
-    const grid = $('#galleryGrid');
+  galleryImagesList = galleryImages;
+  const grid = $('#galleryGrid');
 
-    // Remove loading placeholder
-    const placeholder = grid.querySelector('.loading-placeholder');
-    if (placeholder) placeholder.remove();
+  const placeholder = grid.querySelector('.loading-placeholder');
+  if (placeholder) placeholder.remove();
 
-    if (galleryImages.length === 0) {
-      const section = $('#gallerySection');
-      if (section) section.style.display = 'none';
-      return;
-    }
-
-    galleryImages.forEach((src, i) => {
-      const div = document.createElement('div');
-      div.className = 'gallery-item scale-in';
-      div.style.setProperty('--delay', i);
-      div.setAttribute('data-index', i);
-      div.innerHTML = `<img src="${src}" alt="갤러리 사진 ${i + 1}" loading="lazy">`;
-      div.addEventListener('click', () => openViewer(galleryImages, i));
-      grid.appendChild(div);
-    });
-
-    // Update viewer total count
-    $('#totalCount').textContent = galleryImages.length;
-
-    // Re-observe new elements for scroll animations
-    observeNewElements();
+  if (galleryImages.length === 0) {
+    const section = $('#gallerySection');
+    if (section) section.style.display = 'none';
+    return;
   }
+
+  galleryImages.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.setAttribute('data-index', i);
+    div.innerHTML = `<img src="${src}" alt="갤러리 사진 ${i + 1}" loading="eager">`;
+    div.addEventListener('click', () => openViewer(galleryImages, i));
+    grid.appendChild(div);
+  });
+
+  $('#totalCount').textContent = galleryImages.length;
+}
 
   /* ═══════════════════════════════════════════
      Photo Viewer (with swipe)
