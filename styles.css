@@ -100,12 +100,12 @@ a {
 
 .curtain-left {
     box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.05);
-    animation: curtainLeft 1.8s ease-in-out 0.8s forwards;
+    animation: curtainLeft 2.5s ease-in-out 1s forwards;
 }
 
 .curtain-right {
     box-shadow: inset 10px 0 20px rgba(0, 0, 0, 0.05);
-    animation: curtainRight 1.8s ease-in-out 0.8s forwards;
+    animation: curtainRight 2.5s ease-in-out 1s forwards;
 }
 
 @keyframes curtainLeft {
