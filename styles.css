@@ -482,6 +482,10 @@ a {
     transform: scale(1.05);
 }
 
+.gallery-item.visible {
+    opacity: 1;
+    transform: none;
+}
 /* ═══════════════════════════════════════════
    Photo Viewer Modal
    ═══════════════════════════════════════════ */
