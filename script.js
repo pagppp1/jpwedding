@@ -37,7 +37,7 @@
      Image Auto-Detection
      ═══════════════════════════════════════════ */
 
-  function loadImagesFromFolder(folder, maxAttempts = 35) {
+  function loadImagesFromFolder(folder, maxAttempts = 28) {
     return new Promise(resolve => {
         const images = [];
         let current = 1;
