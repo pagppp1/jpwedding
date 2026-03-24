@@ -73,7 +73,7 @@ const CONFIG = {
     phone: "01033334444",
     kakao: "https://open.kakao.com/o/dddddd"
   }
-}
+},
   
   // ── 오시는 길 ──
   // (mapLinks는 wedding 객체 내에 포함)
