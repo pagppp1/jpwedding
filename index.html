@@ -29,12 +29,14 @@
 <body>
 
   <!-- 🎵 배경음악 -->
-    <audio id="bgm" loop>
+    <audio id="bgm" loop preload="metadata">
     <source src="audio/liszt-love-dream.mp3" type="audio/mpeg">
     </audio>
 
   <!-- 🎵 음악 버튼 -->
-    <button id="musicToggle" class="music-btn">🔊</button>
+    <button id="musicToggle" class="music-btn playing" aria-label="배경음악 끄기" type="button">
+      <span class="music-icon" aria-hidden="true">♫</span>
+    </button>
   
     <!-- ═══ 웨딩 커튼 인트로 ═══ -->
   <div class="curtain-overlay" id="curtainOverlay">

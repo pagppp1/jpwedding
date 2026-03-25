@@ -1290,26 +1290,94 @@ a {
 
 /* 🎵 음악 버튼 */
 .music-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 10001;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(6px);
-    cursor: pointer;
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+  z-index: 1200;
 }
 
+.music-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+.music-btn:active {
+  transform: scale(0.96);
+}
+
+.music-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(122, 92, 97, 0.16),
+    0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.music-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 1;
+  color: #6f565b;
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+/* 🎶 재생 중 */
+.music-btn.playing .music-icon {
+  animation: musicPulse 1.8s ease-in-out infinite;
+}
+
+/* 🔇 꺼짐 상태 */
 .music-btn.off {
-    background: rgba(200,200,200,0.6);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.music-btn.off .music-icon {
+  opacity: 0.4;
+  color: #9a9a9a;
+  animation: none;
+  transform: scale(0.92);
+}
+
+/* ❗ 핵심: 사선 추가 */
+.music-btn.off .music-icon::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  border-radius: 999px;
+}
+
+/* 애니메이션 */
+@keyframes musicPulse {
+  0%   { transform: scale(1) rotate(0deg); }
+  25%  { transform: scale(1.08) rotate(-7deg); }
+  50%  { transform: scale(1) rotate(0deg); }
+  75%  { transform: scale(1.08) rotate(7deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 
 .map-group {

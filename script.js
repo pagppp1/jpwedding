@@ -694,33 +694,51 @@ function initContactModal() {
   function initBGM() {
   const audio = document.getElementById('bgm');
   const btn = document.getElementById('musicToggle');
+  const icon = btn ? btn.querySelector('.music-icon') : null;
 
-  let isPlaying = true;
+  if (!audio || !btn || !icon) return;
 
-  function playAudio() {
-    audio.play().catch(() => {
-      document.addEventListener('click', playAudioOnce, { once: true });
-    });
+  function setButtonState() {
+    const playing = !audio.paused && !audio.ended;
+
+    btn.classList.toggle('playing', playing);
+    btn.classList.toggle('off', !playing);
+    btn.setAttribute('aria-label', playing ? '배경음악 끄기' : '배경음악 켜기');
+
+    /* 아이콘은 항상 동일 유지 (CSS로 사선 처리) */
+    icon.textContent = '♫';
   }
 
-  function playAudioOnce() {
-    audio.play();
+  function tryPlay() {
+    audio.play()
+      .then(() => {
+        setButtonState();
+      })
+      .catch(() => {
+        setButtonState();
+        document.addEventListener('click', resumeOnce, { once: true });
+      });
   }
 
-  playAudio();
+  function resumeOnce() {
+    audio.play().finally(setButtonState);
+  }
 
   btn.addEventListener('click', () => {
-    if (isPlaying) {
-      audio.pause();
-      btn.textContent = '🔇';
-      btn.classList.add('off');
+    if (audio.paused) {
+      audio.play().finally(setButtonState);
     } else {
-      audio.play();
-      btn.textContent = '🔊';
-      btn.classList.remove('off');
+      audio.pause();
+      setButtonState();
     }
-    isPlaying = !isPlaying;
   });
+
+  audio.addEventListener('play', setButtonState);
+  audio.addEventListener('pause', setButtonState);
+  audio.addEventListener('ended', setButtonState);
+
+  setButtonState();
+  tryPlay();
 }
 /* ═══════════════════════════════════════════
      Init
