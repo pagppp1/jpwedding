@@ -102,5 +102,10 @@ const CONFIG = {
     title: "전지원 ♥ 피윤호 결혼합니다",
     description: "2026년 7월 19일, 소중한 분들을 초대합니다.",
     image: "https://raw.githubusercontent.com/pagppp1/jpwedding/main/images/og/1.jpg"
+  },
+
+  kakaoMap: {
+    appKey: "7ee137be5c21b0c1be4cc2d9ab449471"
   }
+
 };

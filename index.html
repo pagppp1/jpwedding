@@ -163,7 +163,7 @@
         </div>
       </div>
       <div class="location-map-container">
-        <img src="" alt="약도" class="location-map" id="locationMapImg">
+        <div id="kakaoMap" class="location-map" aria-label="예식장 위치 지도"></div>
       </div>
       <a href="https://youtu.be/PnpmKfZJgOk" target="_blank" class="youtube-btn">
        ▶ 걸어오실 때
@@ -200,7 +200,13 @@
 
   </main>
 
-  <script src="script.js">
+  <script>
+  document.write(
+    '<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=' +
+    CONFIG.kakaoMap.appKey +
+    '&libraries=services"><\/script>'
+  );
   </script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -484,7 +484,6 @@ function closeViewer() {
     const w = CONFIG.wedding;
     $('#locationVenue').textContent = w.venue;
     $('#locationAddress').textContent = w.address;
-    $('#locationMapImg').src = 'images/location/1.jpg';
     $('#kakaoMapBtn').href = w.mapLinks.kakao || '#';
     $('#naverMapBtn').href = w.mapLinks.naver || '#';
     $('#tmapMapBtn').href = w.mapLinks.tmap || '#';
@@ -493,7 +492,46 @@ function closeViewer() {
       copyToClipboard(w.address, '주소가 복사되었습니다');
     });
   }
+  function initKakaoMap() {
+    const mapEl = document.getElementById('kakaoMap');
+    if (!mapEl || !window.kakao || !kakao.maps) return;
 
+    const venueName = CONFIG.wedding.venue;
+    const address = CONFIG.wedding.address;
+
+   const mapOption = {
+     center: new kakao.maps.LatLng(37.266, 127.0), // 임시 중심점
+      level: 3
+   };
+
+   const map = new kakao.maps.Map(mapEl, mapOption);
+   const geocoder = new kakao.maps.services.Geocoder();
+
+   geocoder.addressSearch(address, function (result, status) {
+     if (status !== kakao.maps.services.Status.OK || !result || !result.length) {
+       mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#888;">지도를 불러오지 못했습니다</div>';
+        return;
+     }
+
+     const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+      const marker = new kakao.maps.Marker({
+        map: map,
+       position: coords
+      });
+
+      const infoWindow = new kakao.maps.InfoWindow({
+        content: `
+          <div style="padding:7px 10px;font-size:12px;line-height:1.4;text-align:center;white-space:nowrap;">
+           ${venueName}
+          </div>
+       `
+     });
+
+     infoWindow.open(map, marker);
+     map.setCenter(coords);
+   });
+  }
   /* ═══════════════════════════════════════════
      Account Section (축의금)
      ═══════════════════════════════════════════ */
@@ -732,6 +770,7 @@ function initContactModal() {
     // Init sections that don't depend on image detection
     initPhotoViewer();
     initLocation();
+    initKakaoMap();
     initAccounts();
     initFooter();
     initScrollAnimations();
