@@ -1261,29 +1261,49 @@ a {
 
 /* ─── 연락 리스트 ─── */
 .contact-item {
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    border: 1px solid #f0e7de;
+    border-radius: 14px;
+    background: #faf7f3;
 }
 
 .contact-name {
+    flex: 1;
+    min-width: 0;
     font-size: 14px;
-    color: #888;
-    margin-bottom: 8px;
+    color: #666;
+    margin-bottom: 0;
+    line-height: 1.4;
 }
 
 .contact-actions {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
     gap: 8px;
+    flex-shrink: 0;
 }
 
 .contact-btn {
-    flex: 1;
-    padding: 10px;
-    border-radius: 20px;
-    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 999px;
+    font-size: 18px;
+    line-height: 1;
     text-align: center;
     background-color: #f5f0eb;
     border: 1px solid #ddd;
     color: #e74c3c;
+    flex: 0 0 auto;
 }
 
 .contact-btn.kakao {

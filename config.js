@@ -65,7 +65,7 @@ const CONFIG = {
     },
     groomMother: {
       name: "신랑측 어머니",
-      phone: "01090179358",
+      phone: "01087251417",
       kakao: "https://open.kakao.com/o/cccccc"
     },
     brideFather: {
