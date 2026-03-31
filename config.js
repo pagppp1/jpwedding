@@ -105,7 +105,7 @@ const CONFIG = {
   },
 
   kakaoMap: {
-    appKey: "bd86aaffa2546888f5e5c40364fe3662"
+    appKey: "7ee137be5c21b0c1be4cc2d9ab449471"
   }
 
 };

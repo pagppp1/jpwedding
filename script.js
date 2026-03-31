@@ -492,54 +492,46 @@ function closeViewer() {
       copyToClipboard(w.address, '주소가 복사되었습니다');
     });
   }
- function initKakaoMap() {
-  const mapEl = document.getElementById('kakaoMap');
-  if (!mapEl || !window.kakao || !kakao.maps) return;
+  function initKakaoMap() {
+    const mapEl = document.getElementById('kakaoMap');
+    if (!mapEl || !window.kakao || !kakao.maps) return;
 
-  kakao.maps.load(function () {
     const venueName = CONFIG.wedding.venue;
     const address = CONFIG.wedding.address;
 
-    const defaultCenter = new kakao.maps.LatLng(37.266, 127.0);
-
-    const map = new kakao.maps.Map(mapEl, {
-      center: defaultCenter,
+   const mapOption = {
+     center: new kakao.maps.LatLng(37.266, 127.0), // 임시 중심점
       level: 3
-    });
+   };
 
-    const geocoder = new kakao.maps.services.Geocoder();
+   const map = new kakao.maps.Map(mapEl, mapOption);
+   const geocoder = new kakao.maps.services.Geocoder();
 
-    geocoder.addressSearch(address, function (result, status) {
-      if (status !== kakao.maps.services.Status.OK || !result || !result.length) {
-        mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#888;">지도를 불러오지 못했습니다</div>';
+   geocoder.addressSearch(address, function (result, status) {
+     if (status !== kakao.maps.services.Status.OK || !result || !result.length) {
+       mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#888;">지도를 불러오지 못했습니다</div>';
         return;
-      }
+     }
 
-      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+     const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
       const marker = new kakao.maps.Marker({
         map: map,
-        position: coords
+       position: coords
       });
 
       const infoWindow = new kakao.maps.InfoWindow({
         content: `
           <div style="padding:7px 10px;font-size:12px;line-height:1.4;text-align:center;white-space:nowrap;">
-            ${venueName}
+           ${venueName}
           </div>
-        `
-      });
+       `
+     });
 
-      infoWindow.open(map, marker);
-
-      // 모바일에서 흰 박스 방지용
-      setTimeout(() => {
-        map.relayout();
-        map.setCenter(coords);
-      }, 300);
-    });
-  });
-}
+     infoWindow.open(map, marker);
+     map.setCenter(coords);
+   });
+  }
   /* ═══════════════════════════════════════════
      Account Section (축의금)
      ═══════════════════════════════════════════ */
@@ -674,27 +666,60 @@ function initContactModal() {
   const list = document.getElementById('contactList');
 
   const contacts = CONFIG.contacts;
+  const orderedContacts = [
+    {
+      name: '신랑측 아버지',
+      phone: contacts.groomParents.phone,
+      roleClass: 'parent'
+    },
+    {
+      name: '신랑측 어머니',
+      phone: contacts.groomParents.phone,
+      roleClass: 'parent'
+    },
+    {
+      name: '신부측 아버지',
+      phone: contacts.brideParents.phone,
+      roleClass: 'parent'
+    },
+    {
+      name: '신부측 어머니',
+      phone: contacts.brideParents.phone,
+      roleClass: 'parent'
+    },
+    {
+      name: '신랑',
+      phone: contacts.groom.phone,
+      roleClass: 'couple'
+    },
+    {
+      name: '신부',
+      phone: contacts.bride.phone,
+      roleClass: 'couple'
+    }
+  ];
 
   function createItem(data) {
     const div = document.createElement('div');
     div.className = 'contact-item';
 
-    const phone = data.phone.replace(/[^0-9]/g, '');
+    const phone = String(data.phone || '').replace(/[^0-9]/g, '');
 
     div.innerHTML = `
-      <div class="contact-name">${data.name}</div>
+      <div class="contact-name-wrap">
+        <div class="contact-name ${data.roleClass || ''}">${data.name}</div>
+      </div>
       <div class="contact-actions">
-        <a href="tel:${phone}" class="contact-btn">📞</a>
+        <a href="tel:${phone}" class="contact-btn" aria-label="${data.name}에게 전화하기">📞</a>
       </div>
     `;
     return div;
   }
 
-  // 리스트 생성
-  list.appendChild(createItem(contacts.groom));
-  list.appendChild(createItem(contacts.bride));
-  list.appendChild(createItem(contacts.groomParents));
-  list.appendChild(createItem(contacts.brideParents));
+  list.innerHTML = '';
+  orderedContacts.forEach((contact) => {
+    list.appendChild(createItem(contact));
+  });
 
   // 열기
   openBtn.addEventListener('click', () => {
