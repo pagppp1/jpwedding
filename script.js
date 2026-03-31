@@ -285,8 +285,45 @@
         showToast('캘린더 파일이 다운로드됩니다');
       });
     }
+    
+  }
+function initWeddingCalendar() {
+  const grid = $('#calendarGrid');
+  if (!grid) return;
+
+  const weddingDate = new Date(`${CONFIG.wedding.date}T00:00:00+09:00`);
+  const year = weddingDate.getFullYear();
+  const month = weddingDate.getMonth();
+  const targetDate = weddingDate.getDate();
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
+
+  grid.innerHTML = '';
+
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement('span');
+    empty.className = 'calendar-day empty';
+    grid.appendChild(empty);
   }
 
+  for (let day = 1; day <= lastDate; day++) {
+    const el = document.createElement('span');
+    el.className = 'calendar-day';
+
+    if (day === targetDate) {
+      el.classList.add('is-wedding-day');
+      el.innerHTML = `
+        <span class="day-number">${day}</span>
+        <span class="day-heart">♥</span>
+      `;
+    } else {
+      el.textContent = day;
+    }
+
+    grid.appendChild(el);
+  }
+}
   /* ═══════════════════════════════════════════
      Story Section
      ═══════════════════════════════════════════ */
@@ -805,6 +842,7 @@ function initContactModal() {
     initHero();
     initCountdown();
     initCalendar();
+    initWeddingCalendar();
 
     // Show loading placeholders while detecting images
     showLoadingPlaceholders();
