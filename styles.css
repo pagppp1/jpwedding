@@ -1261,51 +1261,25 @@ a {
 
 /* ─── 연락 리스트 ─── */
 .contact-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 14px;
-    padding: 12px 14px;
-    border: 1px solid #f0e7df;
-    border-radius: 14px;
-    background: #fcfaf8;
-}
-
-.contact-name-wrap {
-    flex: 1;
-    min-width: 0;
+    margin-bottom: 20px;
 }
 
 .contact-name {
     font-size: 14px;
-    color: #666;
-    margin-bottom: 0;
-    line-height: 1.4;
-}
-
-.contact-name.parent {
-    color: #777;
-}
-
-.contact-name.couple {
-    color: #444;
-    font-weight: 500;
+    color: #888;
+    margin-bottom: 8px;
 }
 
 .contact-actions {
     display: flex;
     gap: 8px;
-    flex-shrink: 0;
 }
 
 .contact-btn {
-    min-width: 44px;
-    height: 44px;
-    padding: 0 12px;
-    border-radius: 999px;
-    font-size: 18px;
-    line-height: 44px;
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 13px;
     text-align: center;
     background-color: #f5f0eb;
     border: 1px solid #ddd;

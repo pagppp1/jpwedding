@@ -58,27 +58,37 @@ const CONFIG = {
   
   // 연락처
   contacts: {
-  groom: {
-    name: "신랑",
-    phone: "01054232102",
-    kakao: "https://open.kakao.com/o/aaaaaa"
+    groomFather: {
+      name: "신랑측 아버지",
+      phone: "01087251417",
+      kakao: "https://open.kakao.com/o/cccccc"
+    },
+    groomMother: {
+      name: "신랑측 어머니",
+      phone: "01090179358",
+      kakao: "https://open.kakao.com/o/cccccc"
+    },
+    brideFather: {
+      name: "신부측 아버지",
+      phone: "01033334444",
+      kakao: "https://open.kakao.com/o/dddddd"
+    },
+    brideMother: {
+      name: "신부측 어머니",
+      phone: "01033334444",
+      kakao: "https://open.kakao.com/o/dddddd"
+    },
+    groom: {
+      name: "신랑",
+      phone: "01054232102",
+      kakao: "https://open.kakao.com/o/aaaaaa"
+    },
+    bride: {
+      name: "신부",
+      phone: "01050060263",
+      kakao: "https://open.kakao.com/o/bbbbbb"
+    }
   },
-  bride: {
-    name: "신부",
-    phone: "01050060263",
-    kakao: "https://open.kakao.com/o/bbbbbb"
-  },
-  groomParents: {
-    name: "신랑측 혼주",
-    phone: "01087251417",
-    kakao: "https://open.kakao.com/o/cccccc"
-  },
-  brideParents: {
-    name: "신부측 혼주",
-    phone: "01033334444",
-    kakao: "https://open.kakao.com/o/dddddd"
-  }
-},
   
   // ── 오시는 길 ──
   // (mapLinks는 wedding 객체 내에 포함)

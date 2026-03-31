@@ -666,55 +666,30 @@ function initContactModal() {
   const list = document.getElementById('contactList');
 
   const contacts = CONFIG.contacts;
-  const orderedContacts = [
-    {
-      name: '신랑측 아버지',
-      phone: contacts.groomParents.phone,
-      roleClass: 'parent'
-    },
-    {
-      name: '신랑측 어머니',
-      phone: contacts.groomParents.phone,
-      roleClass: 'parent'
-    },
-    {
-      name: '신부측 아버지',
-      phone: contacts.brideParents.phone,
-      roleClass: 'parent'
-    },
-    {
-      name: '신부측 어머니',
-      phone: contacts.brideParents.phone,
-      roleClass: 'parent'
-    },
-    {
-      name: '신랑',
-      phone: contacts.groom.phone,
-      roleClass: 'couple'
-    },
-    {
-      name: '신부',
-      phone: contacts.bride.phone,
-      roleClass: 'couple'
-    }
-  ];
 
   function createItem(data) {
     const div = document.createElement('div');
     div.className = 'contact-item';
 
-    const phone = String(data.phone || '').replace(/[^0-9]/g, '');
+    const phone = (data.phone || '').replace(/[^0-9]/g, '');
 
     div.innerHTML = `
-      <div class="contact-name-wrap">
-        <div class="contact-name ${data.roleClass || ''}">${data.name}</div>
-      </div>
+      <div class="contact-name">${data.name}</div>
       <div class="contact-actions">
         <a href="tel:${phone}" class="contact-btn" aria-label="${data.name}에게 전화하기">📞</a>
       </div>
     `;
     return div;
   }
+
+  const orderedContacts = [
+    contacts.groomFather,
+    contacts.groomMother,
+    contacts.brideFather,
+    contacts.brideMother,
+    contacts.groom,
+    contacts.bride
+  ].filter(Boolean);
 
   list.innerHTML = '';
   orderedContacts.forEach((contact) => {
