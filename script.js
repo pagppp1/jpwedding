@@ -577,7 +577,7 @@ function closeViewer() {
       item.className = 'account-item';
       const accountStr = `${acc.bank} ${acc.number}`;
       item.innerHTML = `
-        <p class="account-role">${acc.role}</p>
+        <p class="account-role">${acc.role.replace(',', '<br>')}</p>
         <p class="account-info">${accountStr}</p>
         <button class="copy-btn" data-account="${accountStr}">복사</button>
       `;
