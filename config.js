@@ -18,7 +18,7 @@ const CONFIG = {
 
   imageCounts: {
   story: 2,     // 스토리 사진 개수 (맞게 수정)
-  gallery: 24   // 갤러리 사진 개수 (맞게 수정)
+  gallery: 18   // 갤러리 사진 개수 (맞게 수정)
 },
 
   // ── 메인 (히어로) ──
@@ -59,32 +59,32 @@ const CONFIG = {
   // 연락처
   contacts: {
     groomFather: {
-      name: "신랑측 아버지",
+      name: "신랑측 아버지(피백윤)",
       phone: "01087251417",
       kakao: "https://open.kakao.com/o/cccccc"
     },
     groomMother: {
-      name: "신랑측 어머니",
-      phone: "01087251417",
+      name: "신랑측 어머니(박명분)",
+      phone: "01090179358",
       kakao: "https://open.kakao.com/o/cccccc"
     },
     brideFather: {
-      name: "신부측 아버지",
-      phone: "01033334444",
+      name: "신부측 아버지(전성태)",
+      phone: "01037596470",
       kakao: "https://open.kakao.com/o/dddddd"
     },
     brideMother: {
-      name: "신부측 어머니",
-      phone: "01033334444",
+      name: "신부측 어머니(한성란)",
+      phone: "01088966477",
       kakao: "https://open.kakao.com/o/dddddd"
     },
     groom: {
-      name: "신랑",
+      name: "신랑(피윤호)",
       phone: "01054232102",
       kakao: "https://open.kakao.com/o/aaaaaa"
     },
     bride: {
-      name: "신부",
+      name: "신부(전지원)",
       phone: "01050060263",
       kakao: "https://open.kakao.com/o/bbbbbb"
     }
@@ -96,14 +96,14 @@ const CONFIG = {
   // ── 마음 전하실 곳 ──
   accounts: {
     groom: [
-      { role: "신랑", bank: "우리은행", number: "1002-536-505833" },
-      { role: "아버지", bank: "OO은행", number: "000-00-000000" },
-      { role: "어머니", bank: "신협은행", number: "0321-31-3211418" }
+      { role: "신랑, 피윤호", bank: "우리은행", number: "1002-536-505833" },
+      { role: "아버지, 피백윤", bank: "농협은행", number: "352-870-0423-53" },
+      { role: "어머니, 박명분", bank: "신협은행", number: "0321-31-3211418" }
     ],
     bride: [
-      { role: "신부", bank: "OO은행", number: "00000-0000-00" },
-      { role: "아버지", bank: "OO은행", number: "000000-00-000000" },
-      { role: "어머니", bank: "OO은행", number: "000-00-000000-0" }
+      { role: "신부, 전지원", bank: "국민은행", number: "612502-01-352808" },
+      { role: "아버지, 전성태", bank: "농협은행", number: "143-02-247188" },
+      { role: "어머니, 한성란", bank: "기업은행", number: "010-8896-6477" }
     ]
   },
 
