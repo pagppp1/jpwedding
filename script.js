@@ -492,45 +492,79 @@ function closeViewer() {
       copyToClipboard(w.address, '주소가 복사되었습니다');
     });
   }
+  let kakaoMapInstance = null;
+  let kakaoMapCenter = null;
+
   function initKakaoMap() {
     const mapEl = document.getElementById('kakaoMap');
-    if (!mapEl || !window.kakao || !kakao.maps) return;
+    if (!mapEl) return;
 
     const venueName = CONFIG.wedding.venue;
     const address = CONFIG.wedding.address;
 
-   const mapOption = {
-     center: new kakao.maps.LatLng(37.266, 127.0), // 임시 중심점
-      level: 3
-   };
+    function showMapError() {
+      mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#888;">지도를 불러오지 못했습니다</div>';
+    }
 
-   const map = new kakao.maps.Map(mapEl, mapOption);
-   const geocoder = new kakao.maps.services.Geocoder();
+    function relayoutMap() {
+      if (!kakaoMapInstance || !kakaoMapCenter) return;
+      kakaoMapInstance.relayout();
+      kakaoMapInstance.setCenter(kakaoMapCenter);
+    }
 
-   geocoder.addressSearch(address, function (result, status) {
-     if (status !== kakao.maps.services.Status.OK || !result || !result.length) {
-       mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#888;">지도를 불러오지 못했습니다</div>';
-        return;
-     }
+    function renderMap() {
+      if (!window.kakao || !kakao.maps || !kakao.maps.services) return false;
 
-     const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      const mapOption = {
+        center: new kakao.maps.LatLng(37.266, 127.0),
+        level: 3
+      };
 
-      const marker = new kakao.maps.Marker({
-        map: map,
-       position: coords
+      kakaoMapInstance = new kakao.maps.Map(mapEl, mapOption);
+      const geocoder = new kakao.maps.services.Geocoder();
+
+      geocoder.addressSearch(address, function (result, status) {
+        if (status !== kakao.maps.services.Status.OK || !result || !result.length) {
+          showMapError();
+          return;
+        }
+
+        kakaoMapCenter = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        const marker = new kakao.maps.Marker({
+          map: kakaoMapInstance,
+          position: kakaoMapCenter
+        });
+
+        const infoWindow = new kakao.maps.InfoWindow({
+          content: `
+            <div style="padding:7px 10px;font-size:12px;line-height:1.4;text-align:center;white-space:nowrap;">
+              ${venueName}
+            </div>
+          `
+        });
+
+        infoWindow.open(kakaoMapInstance, marker);
+        relayoutMap();
+
+        setTimeout(relayoutMap, 200);
+        setTimeout(relayoutMap, 800);
       });
 
-      const infoWindow = new kakao.maps.InfoWindow({
-        content: `
-          <div style="padding:7px 10px;font-size:12px;line-height:1.4;text-align:center;white-space:nowrap;">
-           ${venueName}
-          </div>
-       `
-     });
+      window.addEventListener('resize', relayoutMap);
+      window.addEventListener('load', relayoutMap);
+      return true;
+    }
 
-     infoWindow.open(map, marker);
-     map.setCenter(coords);
-   });
+    if (renderMap()) return;
+
+    let retryCount = 0;
+    const retryTimer = setInterval(() => {
+      retryCount += 1;
+      if (renderMap() || retryCount >= 20) {
+        clearInterval(retryTimer);
+      }
+    }, 250);
   }
   /* ═══════════════════════════════════════════
      Account Section (축의금)
