@@ -1700,3 +1700,28 @@ a {
     background: #f2c94c;
     color: #fff;
 }
+
+.location-phone {
+    font-size: 12px;
+    color: #000000;
+    margin-top: 8px;
+}
+.transit-desc {
+    font-size: 13px;
+    color: #666;
+    margin-top: 6px;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.bus-direction {
+    margin-top: 18px;
+}
+
+.bus-direction-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 8px;
+    text-align: left;
+}

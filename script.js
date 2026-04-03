@@ -517,10 +517,16 @@ function closeViewer() {
      Location Section
      ═══════════════════════════════════════════ */
 
-  function initLocation() {
+    function initLocation() {
     const w = CONFIG.wedding;
     $('#locationVenue').textContent = w.venue;
     $('#locationAddress').textContent = w.address;
+
+    const phoneEl = $('#locationPhone');
+    if (phoneEl) {
+      phoneEl.textContent = w.phone ? `Tel. ${w.phone}` : '';
+    }
+
     $('#kakaoMapBtn').href = w.mapLinks.kakao || '#';
     $('#naverMapBtn').href = w.mapLinks.naver || '#';
     $('#tmapMapBtn').href = w.mapLinks.tmap || '#';
@@ -910,7 +916,15 @@ function initContactModal() {
     } else if (subwayBlock) {
       subwayBlock.style.display = 'none';
     }
-
+// 지하철 설명
+if (transit.subwayDesc && transit.subwayDesc.length) {
+  transit.subwayDesc.forEach(text => {
+    const desc = document.createElement('div');
+    desc.className = 'transit-desc';
+    desc.textContent = text;
+    subwayList.appendChild(desc);
+  });
+}
     // 정류장
     if (transit.busStops && transit.busStops.length) {
       transit.busStops.forEach((item) => {
@@ -925,35 +939,68 @@ function initContactModal() {
     } else if (busStopBlock) {
       busStopBlock.style.display = 'none';
     }
+    
 
-    // 버스
-    const busTypeMap = [
-      { key: 'village', label: '마을', className: 'badge-village' },
-      { key: 'general', label: '일반', className: 'badge-general' },
-      { key: 'express', label: '직행', className: 'badge-express' },
-      { key: 'city', label: '간선', className: 'badge-city' }
-    ];
-
+        // 버스
     let hasBus = false;
 
-    busTypeMap.forEach((type) => {
-      const list = transit.buses?.[type.key];
-      if (!list || !list.length) return;
-      hasBus = true;
+    if (transit.busDesc) {
+      const desc = document.createElement('div');
+      desc.className = 'transit-desc';
+      desc.textContent = transit.busDesc;
+      busGroups.appendChild(desc);
+    }
 
-      const group = document.createElement('div');
-      group.className = 'bus-group';
+    function renderBusDirection(title, data) {
+      if (!data) return;
 
-      const items = list.map((bus) => `<span class="bus-no">${bus}</span>`).join('');
+      const wrap = document.createElement('div');
+      wrap.className = 'bus-direction';
 
-      group.innerHTML = `
-        <div class="bus-group-row">
-          <span class="bus-type-badge ${type.className}">${type.label}</span>
-          <div class="bus-no-list">${items}</div>
-        </div>
-      `;
-      busGroups.appendChild(group);
-    });
+      const titleEl = document.createElement('div');
+      titleEl.className = 'bus-direction-title';
+      titleEl.textContent = title;
+      wrap.appendChild(titleEl);
+
+      const busTypeMap = [
+        { key: 'general', label: '일반', className: 'badge-general' },
+        { key: 'seat', label: '좌석', className: 'badge-express' },
+        { key: 'rapid', label: '직행', className: 'badge-express' },
+        { key: 'airport', label: '공항', className: 'badge-city' },
+        { key: 'outer', label: '시외', className: 'badge-express' },
+        { key: 'village', label: '마을', className: 'badge-village' }
+      ];
+
+      let hasDirectionBus = false;
+
+      busTypeMap.forEach((type) => {
+        const list = data[type.key];
+        if (!list || !list.length) return;
+
+        hasBus = true;
+        hasDirectionBus = true;
+
+        const group = document.createElement('div');
+        group.className = 'bus-group';
+
+        const items = list.map((bus) => `<span class="bus-no">${bus}</span>`).join('');
+
+        group.innerHTML = `
+          <div class="bus-group-row">
+            <span class="bus-type-badge ${type.className}">${type.label}</span>
+            <div class="bus-no-list">${items}</div>
+          </div>
+        `;
+        wrap.appendChild(group);
+      });
+
+      if (hasDirectionBus) {
+        busGroups.appendChild(wrap);
+      }
+    }
+
+    renderBusDirection('세화로 방면', transit.buses?.sehwaro);
+    renderBusDirection('덕영대로 방면', transit.buses?.deokyoung);
 
     if (!hasBus && busBlock) {
       busBlock.style.display = 'none';

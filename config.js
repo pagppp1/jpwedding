@@ -43,6 +43,7 @@ const CONFIG = {
     time: "12:00",
     venue: "메리빌리아 더 프레스티지",
     address: "경기도 수원시 권선구 세화로 116 2층",
+    phone: "031-293-5579",
     mapLinks: {
       naver: "https://naver.me/5apDP7nI",
       tmap: "https://tmap.life/2da486ee",
@@ -112,34 +113,48 @@ const CONFIG = {
       time: "12:00",
       venue: "메리빌리아 더 프레스티지",
       address: "경기도 수원시 권선구 세화로 116 2층",
+      phone: "031-293-5579",
       mapLinks: {
         naver: "https://naver.me/5apDP7nI",
         tmap: "https://tmap.life/2da486ee",
         kakao: "https://kko.to/BzHyjm0rww"
       },
       transit: {
-        subway: [
-            {
-              line: "1",
-              name: "수원역",
-              lineName: "수인분당",
-              lineNameClass: "bundang",
-              note: "수원역"
-            }
-          ],
-        //busStops: [
-        //  { no: "1", name: "벌터교차로·영림들" },
-        //  { no: "2", name: "평동동남아파트" },
-        //  { no: "3", name: "가게앞·평동" },
-        //  { no: "4", name: "가게앞·평동" },
-        //  { no: "5", name: "평동동남아파트" },
-        //  { no: "6", name: "벌터교차로" }
-        //],
-        buses: {
-          village: ["27-2", "27-7", "27-6"],
-          general: ["16-2", "H160", "H103", "H161", "H404"]
-        }
-      }
+  subway: [
+    {
+      line: "1",
+      name: "수원역",
+      lineName: "수인분당",
+      lineNameClass: "bundang",
+      note: "수원역"
+    }
+  ],
+
+  subwayDesc: [
+    "KTX 수원역 2층 3번출구",
+    "* 도보 8분 거리 타임빌라스 수원 (구 롯데몰) 맞은편"
+  ],
+
+  busDesc: "수원역 환승센터(1승강장) 하차 / 평동 동남아파트 하차",
+
+  buses: {
+    // 세화로 방향
+    sehwaro: {
+      general: ["22-1", "22-2", "42", "51", "400-1"],
+      express: ["1004", "1004-1"]
+    },
+
+    // 덕영대로 방향
+    deokyoung: {
+      general: ["2", "2-1", "2-2", "9", "9-1", "9-2", "10", "10-2", "10-5"],
+      express: ["110", "909"],
+      rapid: ["1007", "2007", "7770", "8401", "8409"],
+      airport: ["4100"],
+      outer: ["3000", "8426", "8448", "8450", "8471", "8472"],
+      village: ["6-1", "6-3", "27-2", "31"]
+    }
+  }
+}
     },
   // ── 링크 공유 시 나타나는 문구 ──
   meta: {
