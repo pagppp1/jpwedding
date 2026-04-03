@@ -854,6 +854,7 @@ function initContactModal() {
     initAccounts();
     initFooter();
     initScrollAnimations();
+    initTransitInfo();
 
     // Start petal animation
     setTimeout(initPetals, 1500);
@@ -868,6 +869,96 @@ function initContactModal() {
     //contact modal, BGM
     initContactModal();
     initBGM();
+
+      function initTransitInfo() {
+    const transit = CONFIG.wedding.transit;
+    if (!transit) return;
+
+    const subwayList = $('#subwayList');
+    const busStopList = $('#busStopList');
+    const busGroups = $('#busGroups');
+    const subwayBlock = $('#subwayBlock');
+    const busStopBlock = $('#busStopBlock');
+    const busBlock = $('#busBlock');
+
+    if (subwayList) subwayList.innerHTML = '';
+    if (busStopList) busStopList.innerHTML = '';
+    if (busGroups) busGroups.innerHTML = '';
+
+        // 지하철
+    if (transit.subway && transit.subway.length) {
+      transit.subway.forEach((item) => {
+        const row = document.createElement('div');
+        row.className = 'transit-chip subway-chip';
+
+        const lineNameBadge = item.lineName
+          ? `<span class="line-name-badge ${item.lineNameClass || ''}">${item.lineName}</span>`
+          : '';
+
+        const noteText = item.note
+          ? `<span class="transit-note">${item.note}</span>`
+          : '';
+
+        row.innerHTML = `
+        <span class="line-badge line-${item.line}">${item.line}</span>
+        <span class="transit-name">${item.name}</span>
+        ${lineNameBadge}
+        ${noteText}
+      `;
+        subwayList.appendChild(row);
+      });
+    } else if (subwayBlock) {
+      subwayBlock.style.display = 'none';
+    }
+
+    // 정류장
+    if (transit.busStops && transit.busStops.length) {
+      transit.busStops.forEach((item) => {
+        const row = document.createElement('div');
+        row.className = 'transit-chip stop-chip';
+        row.innerHTML = `
+          <span class="stop-no">${item.no}</span>
+          <span class="transit-name">${item.name}</span>
+        `;
+        busStopList.appendChild(row);
+      });
+    } else if (busStopBlock) {
+      busStopBlock.style.display = 'none';
+    }
+
+    // 버스
+    const busTypeMap = [
+      { key: 'village', label: '마을', className: 'badge-village' },
+      { key: 'general', label: '일반', className: 'badge-general' },
+      { key: 'express', label: '직행', className: 'badge-express' },
+      { key: 'city', label: '간선', className: 'badge-city' }
+    ];
+
+    let hasBus = false;
+
+    busTypeMap.forEach((type) => {
+      const list = transit.buses?.[type.key];
+      if (!list || !list.length) return;
+      hasBus = true;
+
+      const group = document.createElement('div');
+      group.className = 'bus-group';
+
+      const items = list.map((bus) => `<span class="bus-no">${bus}</span>`).join('');
+
+      group.innerHTML = `
+        <div class="bus-group-row">
+          <span class="bus-type-badge ${type.className}">${type.label}</span>
+          <div class="bus-no-list">${items}</div>
+        </div>
+      `;
+      busGroups.appendChild(group);
+    });
+
+    if (!hasBus && busBlock) {
+      busBlock.style.display = 'none';
+    }
+  }
   }
 
   if (document.readyState === 'loading') {

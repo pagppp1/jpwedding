@@ -1544,3 +1544,159 @@ a {
     color: #8b7d7d;
     letter-spacing: 0.6px;
 }
+.location-transit {
+    width: 100%;
+    max-width: 720px;
+    margin: 18px auto 0;
+    border-top: 1px solid #ebe5df;
+}
+
+.transit-block {
+    padding: 18px 0;
+    border-bottom: 1px solid #ebe5df;
+}
+
+.transit-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.transit-list,
+.bus-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.transit-chip {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    line-height: 1.6;
+}
+
+.transit-name {
+    font-size: 14px;
+    color: #444;
+}
+
+.transit-note {
+    font-size: 12px;
+    color: #888;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+}
+
+.line-badge {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.line-1 {
+    background: #2448a5;
+}
+
+.stop-no {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 1px solid #8f8f8f;
+    color: #444;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.bus-group-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.bus-type-badge {
+    min-width: 34px;
+    padding: 3px 7px;
+    border-radius: 6px;
+    font-size: 11px;
+    line-height: 1.2;
+    color: #fff;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.badge-village {
+    background: #3aa86f;
+}
+
+.badge-general {
+    background: #3b82c4;
+}
+
+.badge-express {
+    background: #d9534f;
+}
+
+.badge-city {
+    background: #5661b3;
+}
+
+.bus-no-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+}
+
+.bus-no {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 480px) {
+    .location-transit {
+        max-width: 100%;
+    }
+
+    .transit-title {
+        font-size: 14px;
+    }
+
+    .transit-name,
+    .bus-no {
+        font-size: 13px;
+    }
+}
+.line-name-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.line-name-badge.bundang {
+    background: #f2c94c;
+    color: #fff;
+}

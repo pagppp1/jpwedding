@@ -107,6 +107,40 @@ const CONFIG = {
     ]
   },
 
+    wedding: {
+      date: "2026-07-19",
+      time: "12:00",
+      venue: "메리빌리아 더 프레스티지",
+      address: "경기도 수원시 권선구 세화로 116 2층",
+      mapLinks: {
+        naver: "https://naver.me/5apDP7nI",
+        tmap: "https://tmap.life/2da486ee",
+        kakao: "https://kko.to/BzHyjm0rww"
+      },
+      transit: {
+        subway: [
+            {
+              line: "1",
+              name: "수원역",
+              lineName: "수인분당",
+              lineNameClass: "bundang",
+              note: "수원역"
+            }
+          ],
+        busStops: [
+          { no: "1", name: "벌터교차로·영림들" },
+          { no: "2", name: "평동동남아파트" },
+          { no: "3", name: "가게앞·평동" },
+          { no: "4", name: "가게앞·평동" },
+          { no: "5", name: "평동동남아파트" },
+          { no: "6", name: "벌터교차로" }
+        ],
+        buses: {
+          village: ["27-2", "27-7", "27-6"],
+          general: ["16-2", "H160", "H103", "H161", "H404"]
+        }
+      }
+    },
   // ── 링크 공유 시 나타나는 문구 ──
   meta: {
     title: "전지원 ♥ 피윤호 결혼합니다",
