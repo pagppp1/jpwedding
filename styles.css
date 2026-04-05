@@ -6,7 +6,7 @@
 
    @font-face {
     font-family: 'IropkeBatang';
-    src: url('./fonts/IropkeBatang.otf') format('opentype');
+    src: url('./fonts/IropkeBatang.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
