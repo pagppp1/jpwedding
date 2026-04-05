@@ -4,6 +4,12 @@
    (Original aiWedding-main design, new architecture)
    ═══════════════════════════════════════════ */
 
+   @font-face {
+    font-family: 'IropkeBatang';
+    src: url('./fonts/IropkeBatang.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 /* ─── Reset & Base ─── */
 * {
     margin: 0;
@@ -17,7 +23,7 @@ html {
 }
 
 body {
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'IropkeBatang', 'Noto Serif KR', serif;
     background-color: #faf9f7;
     color: #3a3a3a;
     line-height: 1.8;
