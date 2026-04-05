@@ -796,47 +796,55 @@ function initContactModal() {
 
   if (!audio || !btn || !icon) return;
 
+  let isPlaying = false;
+
   function setButtonState() {
-    const playing = !audio.paused && !audio.ended;
-
-    btn.classList.toggle('playing', playing);
-    btn.classList.toggle('off', !playing);
-    btn.setAttribute('aria-label', playing ? '배경음악 끄기' : '배경음악 켜기');
-
-    /* 아이콘은 항상 동일 유지 (CSS로 사선 처리) */
+    btn.classList.toggle('playing', isPlaying);
+    btn.classList.toggle('off', !isPlaying);
+    btn.setAttribute('aria-label', isPlaying ? '배경음악 끄기' : '배경음악 켜기');
     icon.textContent = '♫';
   }
 
-  function tryPlay() {
-    audio.play()
-      .then(() => {
-        setButtonState();
-      })
-      .catch(() => {
-        setButtonState();
-        document.addEventListener('click', resumeOnce, { once: true });
-      });
+  function playAudio() {
+    audio.play().then(() => {
+      isPlaying = true;
+      setButtonState();
+    }).catch(() => {});
   }
 
-  function resumeOnce() {
-    audio.play().finally(setButtonState);
+  function firstUserInteraction() {
+    if (!isPlaying) playAudio();
   }
+
+  document.addEventListener('touchstart', firstUserInteraction, { once: true });
+  document.addEventListener('click', firstUserInteraction, { once: true });
 
   btn.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().finally(setButtonState);
-    } else {
+    if (isPlaying) {
       audio.pause();
+      isPlaying = false;
       setButtonState();
+    } else {
+      playAudio();
     }
   });
 
-  audio.addEventListener('play', setButtonState);
-  audio.addEventListener('pause', setButtonState);
-  audio.addEventListener('ended', setButtonState);
+  audio.addEventListener('play', () => {
+    isPlaying = true;
+    setButtonState();
+  });
+
+  audio.addEventListener('pause', () => {
+    isPlaying = false;
+    setButtonState();
+  });
+
+  audio.addEventListener('ended', () => {
+    isPlaying = false;
+    setButtonState();
+  });
 
   setButtonState();
-  tryPlay();
 }
 /* ═══════════════════════════════════════════
      Init
