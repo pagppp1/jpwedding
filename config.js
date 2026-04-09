@@ -18,7 +18,7 @@ const CONFIG = {
 
   imageCounts: {
   story: 2,     // 스토리 사진 개수 (맞게 수정)
-  gallery: 17   // 갤러리 사진 개수 (맞게 수정)
+  gallery: 18   // 갤러리 사진 개수 (맞게 수정)
 },
 
   // ── 메인 (히어로) ──
